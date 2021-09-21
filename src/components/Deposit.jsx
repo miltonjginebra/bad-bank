@@ -1,6 +1,8 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-import UserContext from "./UserContext";
+import { UserContext } from "./UserContext";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const Deposit = () => {
   const ctx = React.useContext(UserContext);
@@ -8,8 +10,34 @@ const Deposit = () => {
   const [account, setAccount] = React.useState(0);
 
   const handleDeposit = () => {
+    const Message = withReactContent(Swal);
+
+    if (isNaN(deposit)) {
+      setDeposit(0);
+      Message.fire({
+        title: <strong>Error</strong>,
+        html: <i>Deposit must be a number</i>,
+        icon: "error",
+      });
+      return false;
+    } else if (deposit < 0) {
+      setDeposit(0);
+      Message.fire({
+        title: <strong>Error</strong>,
+        html: <i>Deposit can't be a negative number</i>,
+        icon: "error",
+      });
+      return false;
+    }
+
     ctx.users[account].balance += parseInt(deposit);
-    return setDeposit(0);
+    setDeposit(0);
+    Message.fire({
+      title: <strong>Success</strong>,
+      html: <i>Your deposit has been received!</i>,
+      icon: "success",
+    });
+    return true;
   };
 
   return (
@@ -31,14 +59,18 @@ const Deposit = () => {
               onChange={(e) => setAccount(e.currentTarget.value)}
             >
               {ctx.users.map((user, index) => {
-                return <option value={index}>{user.name}</option>;
+                return (
+                  <option key={index} value={index}>
+                    {user.name}
+                  </option>
+                );
               })}
             </select>
             <br />
             Amount
             <br />
             <input
-              type="number"
+              type="text"
               className="form-control"
               id="amount"
               placeholder="Enter Amount"

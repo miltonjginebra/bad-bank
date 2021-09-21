@@ -1,22 +1,21 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
-import UserContext from "./UserContext";
+import { UserContext } from "./UserContext";
 
 function AllData() {
   const ctx = React.useContext(UserContext);
   return (
     <>
-      <h5>Accounts:</h5>
-      <br />
       <Container>
         {ctx.users.map((user, index) => {
           return (
             <Card
-              className="me-1"
+              key={index}
+              className="me-1 mt-2"
               style={{ width: "18rem", display: "inline-block" }}
             >
-              <Card.Header className="p-3">
+              <Card.Header className="p-3 bg-primary text-white">
                 <h5>{user.name}</h5>
               </Card.Header>
               <Card.Body className="pb-1">

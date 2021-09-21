@@ -1,25 +1,32 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-import UserContext from "./UserContext";
+import { UserContext } from "./UserContext";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const CreateAccount = () => {
   const [show, setShow] = React.useState(true);
-  const [status, setStatus] = React.useState("");
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const ctx = React.useContext(UserContext);
+  const Message = withReactContent(Swal);
 
   function validate(field, label) {
     if (!field || (label === "password" && password.length < 8)) {
       if (label === "password" && password && password.length < 8) {
-        setStatus("Error: " + label);
-        alert(`${label} must be at least 8 characters long`);
+        Message.fire({
+          title: <strong>Error</strong>,
+          html: `${label} must be at least 8 characters long`,
+          icon: "error",
+        });
         return false;
       }
-      setStatus("Error: " + label);
-      alert(`No ${label} has been entered`);
-      setTimeout(() => setStatus(""), 3000);
+      Message.fire({
+        title: <strong>Error</strong>,
+        html: `No ${label} has been entered`,
+        icon: "error",
+      });
       return false;
     }
     return true;

@@ -6,25 +6,15 @@ import CreateAccount from "./components/CreateAccount";
 import Deposit from "./components/Deposit";
 import Withdraw from "./components/Withdraw";
 import AllData from "./components/AllData";
-import UserContext from "./components/UserContext";
+import UserContextProvider from "./components/UserContext";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-secondary vh-100">
       <HashRouter>
         <TopNaV />
-        <UserContext.Provider
-          value={{
-            users: [
-              {
-                name: "abel",
-                email: "abel@mit.edu",
-                password: "secret",
-                balance: 100,
-              },
-            ],
-          }}
-        >
+        <UserContextProvider>
           <div className="container" style={{ padding: "20px" }}>
             <Route path="/" exact component={Home} />
             <Route path="/CreateAccount/" exact component={CreateAccount} />
@@ -32,7 +22,7 @@ function App() {
             <Route path="/Withdraw/" exact component={Withdraw} />
             <Route path="/AllData/" exact component={AllData} />
           </div>
-        </UserContext.Provider>
+        </UserContextProvider>
       </HashRouter>
     </div>
   );

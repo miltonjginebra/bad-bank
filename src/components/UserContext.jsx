@@ -1,5 +1,24 @@
 import React from "react";
 
-const UserContext = React.createContext(null);
+export const UserContext = React.createContext(null);
 
-export default UserContext;
+const UserContextProvider = (props) => {
+  return (
+    <UserContext.Provider
+      value={{
+        users: [
+          {
+            name: "abel",
+            email: "abel@mit.edu",
+            password: "secret",
+            balance: 100,
+          },
+        ],
+      }}
+    >
+      {props.children}
+    </UserContext.Provider>
+  );
+};
+
+export default UserContextProvider;
