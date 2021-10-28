@@ -1,33 +1,45 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import { UserContext } from "./UserContext";
 
 function AllData() {
   const ctx = React.useContext(UserContext);
+  let even = true;
   return (
     <>
       <Container>
-        {ctx.users.map((user, index) => {
-          return (
-            <Card
-              key={index}
-              className="me-1 mt-2"
-              style={{ width: "18rem", display: "inline-block" }}
-            >
-              <Card.Header className="p-3 bg-primary text-white">
-                <h5>{user.name}</h5>
-              </Card.Header>
-              <Card.Body className="pb-1">
-                Email: {user.email}
-                <br />
-                Password: {user.password}
-                <br />
-                Balance: {user.balance}
-              </Card.Body>
-            </Card>
-          );
-        })}
+        <Card bg={"secondary"} text={"white"} className="">
+          <Card.Header className=" bg-primary">
+            <h5>All Data</h5>
+          </Card.Header>
+          <Card.Body className="p-0">
+            <Container className="w-100">
+              <Row className={"bg-secondary text-white"}>
+                <Col>Email:</Col>
+                <Col>Password:</Col>
+                <Col>Balance:</Col>
+              </Row>
+              {ctx.users.map((user, index) => {
+                even = !even;
+                return (
+                  <Row
+                    key={index}
+                    className={
+                      even ? "bg-light text-black" : "bg-white text-black"
+                    }
+                  >
+                    <Col>{user.email}</Col>
+                    <Col>{user.password}</Col>
+                    <Col>{user.balance}</Col>
+                  </Row>
+                );
+              })}
+            </Container>
+          </Card.Body>
+        </Card>
       </Container>
     </>
   );

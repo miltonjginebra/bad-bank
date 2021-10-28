@@ -20,7 +20,7 @@ const TopNav = () => {
 
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+      <Navbar collapseOnSelect expand="lg" bg="secondary" variant="dark">
         <Container fluid style={{ padding: " 0 1rem" }}>
           <Navbar.Brand href="#">BadBank</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />

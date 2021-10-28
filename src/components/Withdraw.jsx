@@ -7,11 +7,18 @@ import withReactContent from "sweetalert2-react-content";
 const Withdraw = () => {
   const ctx = React.useContext(UserContext);
   const [withdraw, setWithdraw] = React.useState(0);
-  const [account, setAccount] = React.useState(0);
-
   const Message = withReactContent(Swal);
 
   const handleWithdraw = () => {
+    if (ctx.loggedIn.status === false) {
+      Message.fire({
+        title: <strong>Error</strong>,
+        html: <i>Must be logged in first</i>,
+        icon: "error",
+      });
+      return false;
+    }
+
     if (isNaN(parseInt(withdraw))) {
       setWithdraw(0);
       Message.fire({
@@ -28,7 +35,7 @@ const Withdraw = () => {
         icon: "error",
       });
       return false;
-    } else if (ctx.users[account].balance < parseInt(withdraw)) {
+    } else if (ctx.users[ctx.loggedIn.index].balance < parseInt(withdraw)) {
       setWithdraw(0);
       Message.fire({
         title: <strong>Error</strong>,
@@ -38,7 +45,8 @@ const Withdraw = () => {
       return false;
     }
 
-    ctx.users[account].balance -= parseInt(withdraw);
+    //ctx.users[account].balance -= parseInt(withdraw);
+    ctx.users[ctx.loggedIn.index].balance -= parseInt(withdraw);
     setWithdraw(0);
     Message.fire({
       title: <strong>Success</strong>,
@@ -50,32 +58,22 @@ const Withdraw = () => {
 
   return (
     <>
-      <Card bg={"primary"} text={"white"} style={{ width: "18rem" }}>
-        <Card.Header style={{ padding: ".75rem 1.25rem" }}>
+      <Card bg={"secondary"} text={"white"} className={"w-75 mx-auto"}>
+        <Card.Header
+          className={"bg-primary"}
+          style={{ padding: ".75rem 1.25rem" }}
+        >
           Withdraw
         </Card.Header>
         <Card.Body style={{ padding: "1.25rem" }}>
           <>
-            Account Balance: {ctx.users[account].balance}
+            Account Balance:{" "}
+            {ctx.loggedIn.index
+              ? ctx.users[ctx.loggedIn.index].balance
+              : "Not Logged In"}
             <br />
             To Withdraw: {withdraw}
             <br />
-            <br />
-            Name
-            <br />
-            <select
-              className="form-control"
-              id="account_name"
-              onChange={(e) => setAccount(e.currentTarget.value)}
-            >
-              {ctx.users.map((user, index) => {
-                return (
-                  <option key={index} value={index}>
-                    {user.name}
-                  </option>
-                );
-              })}
-            </select>
             <br />
             Amount
             <br />
@@ -90,7 +88,7 @@ const Withdraw = () => {
             <br />
             <button
               type="submit"
-              className="btn btn-light"
+              className="btn btn-primary"
               onClick={handleWithdraw}
               disabled={!withdraw ? true : false}
             >

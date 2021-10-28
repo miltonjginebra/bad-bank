@@ -11,7 +11,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
-    <div className="App bg-secondary vh-100">
+    <div className="App bg-dark vh-100">
       <HashRouter>
         <TopNaV />
         <UserContextProvider>

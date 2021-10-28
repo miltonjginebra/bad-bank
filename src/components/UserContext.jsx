@@ -8,12 +8,24 @@ const UserContextProvider = (props) => {
       value={{
         users: [
           {
-            name: "abel",
+            name: "Abel",
             email: "abel@mit.edu",
             password: "secret",
             balance: 100,
           },
+          {
+            name: "Milton",
+            email: "miltonjginebra@gmail.com",
+            password: "secret",
+            balance: 100,
+          },
         ],
+        loggedIn: {
+          name: "",
+          email: "",
+          index: null,
+          status: false,
+        },
       }}
     >
       {props.children}

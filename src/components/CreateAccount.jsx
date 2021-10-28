@@ -50,8 +50,11 @@ const CreateAccount = () => {
 
   return (
     <>
-      <Card bg={"primary"} text={"white"} style={{ width: "18rem" }}>
-        <Card.Header style={{ padding: ".75rem 1.25rem" }}>
+      <Card bg={"secondary"} text={"white"} className={"w-75 mx-auto"}>
+        <Card.Header
+          className="bg-primary"
+          style={{ padding: ".75rem 1.25rem" }}
+        >
           Create Account
         </Card.Header>
         <Card.Body style={{ padding: "1.25rem" }}>
@@ -92,7 +95,7 @@ const CreateAccount = () => {
               <br />
               <button
                 type="submit"
-                className="btn btn-light"
+                className="btn btn-primary"
                 onClick={handleCreate}
                 disabled={!name && !email && password.length < 8 ? true : false}
               >
