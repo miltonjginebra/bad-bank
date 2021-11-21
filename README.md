@@ -15,7 +15,7 @@ This is a project we worked on during MIT xPRO's Full Stack Web Development porg
 Clone the repository:
 ### `git clone https://github.com/miltonjginebra/bad-bank.git`
 
-Install packaged:
+Install packages:
 ### `npm install`
 
 Run in development mode:
