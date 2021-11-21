@@ -25,22 +25,22 @@ Build for production:
 ### `npm run build`
 
 
-# GIF
+## GIF
 
-![](https://media.giphy.com/media/JGKAldBER2ox1u0Fq5/source.gif | width=500)
+![](https://media.giphy.com/media/JGKAldBER2ox1u0Fq5/source.gif)
 
 
-# Technology used:
+## Technology used:
 
 - React
 
 
-# Features 
+## Features 
 
 - Create Account, Login/Logout, Deposit and Withdraw Funds, Responsive Layout using Bootstrap 5
 
 
-# License 
+## License 
 
 [MIT](https://opensource.org/licenses/MIT)
 
