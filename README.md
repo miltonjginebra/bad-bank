@@ -27,7 +27,7 @@ Build for production:
 
 # GIF
 
-![](https://media.giphy.com/media/JGKAldBER2ox1u0Fq5/source.gif | width=500)
+![](https://media.giphy.com/media/JGKAldBER2ox1u0Fq5/source.gif)
 
 
 # Technology used:
